@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>TODO List</title>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">TODO List</h1>
+        <div class="inputItem">
+            <input type="text" id="userInput" placeholder="Update your list...">
+            <button class="addToList" value="Add" onclick="onAddClick()">Submit</button>
+        </div>
+        <div>
+            <ul class="todoList" id="todo">
+                <li>
+                    <label>Go to GYM</label>
+                    <span class="deleteButton" onclick="DeleteTask(event)">
+                        <i class="fa fa-minus"></i>
+                    </span>
+                    <span class="editButton" onclick="EditTask(event)">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                </li>
+                <li>
+                    <label>Get papers signed</label>
+                    <span class="deleteButton" onclick="DeleteTask(event)">
+                        <i class="fa fa-minus"></i>
+                    </span>
+                    <span class="editButton" onclick="EditTask(event)">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                </li>
+                <li>
+                    <label> Have a Soup</label>
+                    <span class="deleteButton" onclick="DeleteTask(event)">
+                        <i class="fa fa-minus"></i>
+                    </span>
+                    <span class="editButton" onclick="EditTask(event)">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <span>You have <span class="pendingTask"></span> pending to-dos</span>
+            <button onclick="ClearAll()">Clear All</button>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
