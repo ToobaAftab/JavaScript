@@ -16,34 +16,13 @@ inputBox.onkeyup = ()=> {
 }
 
 pendingTask.textContent = totalListCount.length;
+getAllToDos();
 
 function onAddClick()
 {
     if (addBtn.value == "Add")
     {
-        var listElement = document.createElement("li");
-        var labelElement = document.createElement("label");
-        var spanElementDelete = document.createElement("span");
-        var spanElementEdit = document.createElement("span");
-        var iELementMinus = document.createElement("i");
-        var iELementPencil = document.createElement("i");
-    
         var inputValue = document.getElementById("userInput").value;
-        
-        labelElement.innerText = inputValue;
-        iELementMinus.className = "fa fa-minus";
-        spanElementDelete.className = "deleteButton";
-        spanElementDelete.addEventListener("click",DeleteTask);
-        spanElementDelete.appendChild(iELementMinus);
-        
-        iELementPencil.className = "fa fa-pencil";
-        spanElementEdit.className = "editButton";
-        spanElementEdit.addEventListener("click",EditTask);
-        spanElementEdit.appendChild(iELementPencil);
-
-        listElement.appendChild(labelElement);
-        listElement.appendChild(spanElementDelete);
-        listElement.appendChild(spanElementEdit);
         
         if (inputValue === '')
         {
@@ -51,7 +30,7 @@ function onAddClick()
         }
         else
         {
-            incompleteTasks.appendChild(listElement);
+            incompleteTasks.appendChild(creatingUlElements(inputValue));
             ShowTasksCount(incompleteTasks);
             // var pendingTasks = document.querySelectorAll(".todoList li");
             // pendingTask.textContent = pendingTasks.length;
@@ -61,11 +40,11 @@ function onAddClick()
         document.getElementById("userInput").value = "";
     }
 
-    else if (addBtn.value == "Update")
-    {
-        console.log("I am update");
-        addBtn.value = "Add";
-    }
+    // else if (addBtn.value == "Update")
+    // {
+    //     console.log("I am update");
+    //     addBtn.value = "Add";
+    // }
 }
 
 function DeleteTask(e)
@@ -87,10 +66,39 @@ function ClearAll()
     ShowTasksCount(incompleteTasks);
 }
 
-function EditTask(e)
+function getAllToDos()
 {
-    userInput.value = e.target.parentNode.childNodes[1].innerText;
-    console.log(e.target.parentNode.childNodes);
-    addBtn.value = "Update";
-    console.log(document.querySelector(".todoList").childNodes);
+    var toDos = ["First Todo", "Second Todo", "Third Todo"];
+    let text = "<ul>";
+    for (let i=0; i<toDos.length; i++)
+    {
+        incompleteTasks.appendChild(creatingUlElements(toDos[i]));
+    }
 }
+
+function creatingUlElements(value)
+{
+    var listElement = document.createElement("li");
+    var labelElement = document.createElement("label");
+    var spanElementDelete = document.createElement("span");
+    var iELementMinus = document.createElement("i");
+    iELementMinus.className = "fa fa-minus";
+
+    spanElementDelete.className = "deleteButton";
+    spanElementDelete.addEventListener("click",DeleteTask);
+    spanElementDelete.appendChild(iELementMinus);
+
+    labelElement.innerText = value;
+    listElement.appendChild(labelElement);
+    listElement.appendChild(spanElementDelete);
+
+    return listElement;
+}
+
+// function EditTask(e)
+// {
+//     userInput.value = e.target.parentNode.childNodes[1].innerText;
+//     console.log(e.target.parentNode.childNodes);
+//     addBtn.value = "Update";
+//     console.log(document.querySelector(".todoList").childNodes);
+// }
